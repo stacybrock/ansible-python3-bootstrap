@@ -1,0 +1,6 @@
+---
+- import_tasks: install_packages.yml
+- import_tasks: setup_user.yml
+- import_tasks: install_python.yml
+  become: yes
+  become_user: "{{ common.create_user }}"

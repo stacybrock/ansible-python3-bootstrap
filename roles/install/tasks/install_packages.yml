@@ -1,0 +1,15 @@
+---
+- name: install git
+  yum:
+    name: git
+    state: present
+
+- name: install Development Tools package group
+  yum:
+    name: "@Development Tools"
+    state: present
+
+- name: install packages required for python
+  yum:
+    name: [ 'gcc', 'zlib-devel', 'readline-devel', 'sqlite-devel', 'openssl-devel', 'bzip2-devel' ]
+    state: present
