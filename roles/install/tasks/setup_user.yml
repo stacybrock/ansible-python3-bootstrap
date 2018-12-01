@@ -4,16 +4,3 @@
     name: "{{ common.create_user }}"
     shell: /bin/bash
     home: "{{ common.user_home }}"
-  when: common.create_user is defined
-
-- name: insert/update pyenv block in user's .bashrc
-  blockinfile:
-    dest: "/home/{{ common.create_user }}/.bashrc"
-    block: |
-      export PYENV_ROOT="/home/{{ common.create_user }}/.pyenv"
-      export PATH="$PYENV_ROOT/bin:$PATH"
-      if command -v pyenv 1>/dev/null 2>&1; then
-        eval "$(pyenv init -)"
-      fi
-      source $PYENV_ROOT/completions/pyenv.bash
-    marker: "# {mark} ANSIBLE MANAGED BLOCK: pyenv"

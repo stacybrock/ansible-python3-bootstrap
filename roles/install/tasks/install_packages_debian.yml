@@ -1,0 +1,28 @@
+---
+- name: install git
+  apt:
+    name: git
+    state: present
+
+- name: install packages required for building python
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncurses5-dev
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libffi-dev
+      - liblzma-dev

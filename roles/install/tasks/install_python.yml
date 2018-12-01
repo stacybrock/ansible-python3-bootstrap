@@ -3,11 +3,21 @@
 - name: install pyenv
   git: repo="https://github.com/pyenv/pyenv.git"
        dest="{{ common.user_home }}/.pyenv"
-       version="v1.1.4"
+       version="{{ pyenv.version }}"
 
-- name: insert/update pyenv block in .bashrc
+- name: set 'shell_init_file' to .bashrc
+  set_fact:
+    shell_init_file: .bashrc
+  when: ansible_os_family == "RedHat"
+
+- name: set 'shell_init_file' to .profile
+  set_fact:
+    shell_init_file: .profile
+  when: ansible_os_family == "Debian"
+
+- name: insert/update pyenv block in {{ shell_init_file }}
   blockinfile:
-    dest: "{{ common.user_home }}/.bashrc"
+    dest: "{{ common.user_home }}/{{ shell_init_file }}"
     block: |
       export PYENV_ROOT="$HOME/.pyenv"
       export PATH="$PYENV_ROOT/bin:$PATH"
@@ -18,11 +28,12 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK: pyenv"
 
 - name: install python
-  shell: source $HOME/.bashrc && pyenv install {{ common.python_version }}
+  shell: source {{ common.user_home }}/{{ shell_init_file }} && pyenv install {{ common.python_version }}
   args:
+    executable: /bin/bash
     creates: "{{ common.user_home }}/.pyenv/versions/{{ common.python_version}}/bin/python"
 
 - name: install pyenv-virtualenvwrapper
   git: repo="https://github.com/pyenv/pyenv-virtualenvwrapper.git"
        dest="{{ common.user_home }}/.pyenv/plugins/pyenv-virtualenvwrapper"
-       version="v20140609"
+       version="{{ pyenv.virtualenvwrapper_plugin_version }}"
