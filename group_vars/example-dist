@@ -3,6 +3,7 @@ common:
   create_user: changeme
   user_home: /home/changeme
   python_version: 3.7.1
+  # user_is_system_user: yes
 pyenv:
   version: v1.2.8
   virtualenvwrapper_plugin_version: v20140609

@@ -19,6 +19,7 @@ common:
   create_user: changeme
   user_home: /home/changeme
   python_version: 3.7.1
+  # user_is_system_user: yes
 pyenv:
   version: v1.2.8
   virtualenvwrapper_plugin_version: v20140609
@@ -27,6 +28,7 @@ pyenv:
 * `common.create_user` - name of user account to create
 * `common.user_home` - homedir of user account to create
 * `common.python_version` - version of Python to install; see [this list](https://github.com/pyenv/pyenv/tree/master/plugins/python-build/share/python-build) for possibilities
+* `common.user_is_system_user` - (optional) 'yes' or 'no', if yes makes the user a system account
 * `pyenv.version` - version of pyenv to install
 * `pyenv.virtualenvwrapper_plugin_version` - version of [pyenv-virtualenvwrapper](https://github.com/pyenv/pyenv-virtualenvwrapper) to install
 

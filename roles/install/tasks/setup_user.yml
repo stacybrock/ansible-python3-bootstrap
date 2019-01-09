@@ -4,3 +4,4 @@
     name: "{{ common.create_user }}"
     shell: /bin/bash
     home: "{{ common.user_home }}"
+    system: "{{ common.user_is_system_user | default('no') }}"
