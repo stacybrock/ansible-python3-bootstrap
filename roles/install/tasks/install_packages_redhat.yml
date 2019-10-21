@@ -11,5 +11,5 @@
 
 - name: install packages required for python
   yum:
-    name: [ 'gcc', 'zlib-devel', 'readline-devel', 'sqlite-devel', 'openssl-devel', 'bzip2-devel' ]
+    name: [ 'gcc', 'zlib-devel', 'readline-devel', 'sqlite-devel', 'openssl-devel', 'bzip2-devel', 'xz-devel', 'libffi-devel' ]
     state: present
